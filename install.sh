@@ -3,8 +3,11 @@ sudo apt update && sudo apt upgrade -y && sudo apt -y dist-upgrade && sudo apt -
 sudo apt install -y  vim net-tools apt-transport-https ca-certificates curl linux-modules-extra-raspi containerd
 
 sudo hostnamectl set-hostname master
-
 sudo sed -i '2 i 127.0.0.1 master' /etc/hosts
+
+# Disable swap memory
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo swapoff -a
 
 sudo reboot
 
