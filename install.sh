@@ -11,7 +11,10 @@ sudo reboot
 sudo mkdir -p /etc/containerd
 sudo su -
 containerd config default  /etc/containerd/config.toml > /etc/containerd/config.toml
+#Modify
 vim /etc/containerd/config.toml
+#[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+#			SystemdCgroup = true
 exit
 
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
