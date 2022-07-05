@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-HOSTNAME="Gimli"
+HOSTNAME=$1
 OS=$(grep '^ID' /etc/os-release)
 
 sudo apt update && sudo apt full-upgrade -y && sudo apt -y autoremove && sudo apt autoclean
@@ -10,7 +10,7 @@ if [[ $OS == *"ubuntu" ]]; then
     sudo apt install linux-modules-extra-raspi
 fi
 
-sudo sed -i '2 i 127.0.0.1\t$HOSTNAME' /etc/hosts
+sudo sed -i "2 i 127.0.0.1\t$HOSTNAME" /etc/hosts
 
 sudo mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml
